@@ -1,11 +1,16 @@
-package com.coffee.generator;
+package com.coffee.coffeeweb.generator;
 
-import com.coffee.generator.base.GenericGenerator;
+import com.coffee.coffeeweb.generator.base.GenericGenerator;
 import com.google.common.collect.Maps;
-import org.apache.commons.lang3.RandomUtils;
-import org.apache.commons.lang3.StringUtils;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import org.apache.commons.lang3.*;
 import org.joda.time.DateTime;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -45,10 +50,20 @@ public class ChineseIDCardNumberGenerator extends GenericGenerator {
      * 
      * @return
      */
-    public static String generateIssueOrg() {
-        return ChineseAreaList.cityNameList
-            .get(RandomUtils.nextInt(0, ChineseAreaList.cityNameList.size()))
-            + "公安局某某分局";
+    public static String generateIssueOrg(String idCard) throws FileNotFoundException {
+        String idAreaCode = StringUtils.substring(idCard,0,6);
+        JsonParser parse =new JsonParser();  //创建json解析器
+        JsonObject json=(JsonObject) parse.parse(new FileReader("I:\\IDEAWorkspace\\coffee-cloud\\coffee-web\\src\\main\\resources\\static\\area_dict.json"));
+        JsonArray arr = json.getAsJsonArray("RECORDS");
+        String orgName = null;
+        for(Object o : arr){
+            JsonObject jsonObject= (JsonObject) o;
+            String area_code = jsonObject.get("area_code").getAsString();
+            if(StringUtils.equals(idAreaCode, area_code)){
+                orgName =  jsonObject.get("area_name").getAsString()+"公安局";
+            }
+        }
+        return orgName;
     }
 
     /**
@@ -149,5 +164,12 @@ public class ChineseIDCardNumberGenerator extends GenericGenerator {
         map.put("91", "国外");
 
         return map;
+    }
+
+    public static void main(String[] args) throws FileNotFoundException {
+        String gaj = generateIssueOrg("61273219890902003X");
+        System.out.println(gaj);
+        ChineseIDCardNumberGenerator o = new ChineseIDCardNumberGenerator();
+        System.out.println(o.generate());;
     }
 }

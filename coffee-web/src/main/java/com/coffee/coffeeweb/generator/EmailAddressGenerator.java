@@ -1,6 +1,6 @@
-package com.coffee.generator;
+package com.coffee.coffeeweb.generator;
 
-import cn.binarywang.tools.generator.base.GenericGenerator;
+import com.coffee.coffeeweb.generator.base.GenericGenerator;
 import org.apache.commons.lang3.RandomStringUtils;
 
 public class EmailAddressGenerator extends GenericGenerator {

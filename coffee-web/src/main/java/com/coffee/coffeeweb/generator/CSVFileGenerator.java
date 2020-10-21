@@ -1,4 +1,4 @@
-package com.coffee.generator;
+package com.coffee.coffeeweb.generator;
 
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
