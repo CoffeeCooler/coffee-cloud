@@ -194,16 +194,4 @@ public class IDCardGenerator implements GenericGenerator {
         return map;
     }
 
-    public static void main(String[] args) throws ParseException {
-        IDCardGenerator genericGenerator = new IDCardGenerator();
-        System.out.println(genericGenerator.generate());
-       System.out.println(genericGenerator.generate(new Date()));
-       System.out.println(genericGenerator.generate("612732"));
-       System.out.println(genericGenerator.generate(new Date(),"612732"));
-       System.out.println(genericGenerator.generate(new Date(),"612732","女"));
-       System.out.println(genericGenerator.generate(new Date(),"612732","男"));
-       System.out.println(genericGenerator.generate(DateUtils.parseDate("19900101","yyyyMMdd"),DateUtils.parseDate("20210101","yyyyMMdd")));
-       System.out.println(genericGenerator.generate(DateUtils.parseDate("19900101","yyyyMMdd"),DateUtils.parseDate("20210101","yyyyMMdd"),"612732","男"));
-
-    }
 }
