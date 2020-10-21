@@ -36,7 +36,6 @@ public class IDCardGenerator implements GenericGenerator {
         return validate[mod];// 返回校验码
     }
 
-    @Override
     public  boolean  validateIDCard(String idCard){
         String idnumber17 = StringUtils.substring(idCard,0,17);
         String checkCode = String.valueOf(getCheckoutCode(idnumber17));
@@ -58,7 +57,6 @@ public class IDCardGenerator implements GenericGenerator {
         return getIdCardResult(areaCode,birthday,randomCode);
     }
 
-    @Override
     public String generate(Date birthdayAgs) {
         Map<String, String> code = getAreaCode();
         String areaCode = code.keySet().toArray(new String[0])[RandomUtils
@@ -72,7 +70,6 @@ public class IDCardGenerator implements GenericGenerator {
         return getIdCardResult(areaCode,birthday,randomCode);
     }
 
-    @Override
     public String generate(Date startDate, Date endDate) {
         long chosenDate = RandomUtils.nextLong(startDate.getTime(),endDate.getTime());
         Map<String, String> code = getAreaCode();
@@ -87,7 +84,6 @@ public class IDCardGenerator implements GenericGenerator {
         return getIdCardResult(areaCode,birthday,randomCode);
     }
 
-    @Override
     public String generate(Date birthday, String areaCode) {
         String birthday1 = new SimpleDateFormat("yyyyMMdd").format(birthday);
         String randomCode = String.valueOf(1000 + RandomUtils.nextInt(0, 999))
@@ -95,7 +91,6 @@ public class IDCardGenerator implements GenericGenerator {
         return getIdCardResult(areaCode,birthday1,randomCode);
     }
 
-    @Override
     public String generate(String areaCode) {
         String birthday = new SimpleDateFormat("yyyyMMdd").format(randomDate());
         String randomCode = String.valueOf(1000 + RandomUtils.nextInt(0, 999))
@@ -103,7 +98,6 @@ public class IDCardGenerator implements GenericGenerator {
         return getIdCardResult(areaCode,birthday,randomCode);
     }
 
-    @Override
     public String generate(Date birthday, String areaCode, String sex) {
         String birthday1 = new SimpleDateFormat("yyyyMMdd").format(birthday);
         String randomCode = null;
@@ -124,7 +118,6 @@ public class IDCardGenerator implements GenericGenerator {
         return getIdCardResult(areaCode,birthday1,randomCode);
     }
 
-    @Override
     public String generate(Date birthdayStart, Date birthdayEnd, String areaCode, String sex) {
         long chosenDate = RandomUtils.nextLong(birthdayStart.getTime(), birthdayEnd.getTime());
         String birthday = new SimpleDateFormat("yyyyMMdd").format(new Date(chosenDate));
@@ -202,7 +195,7 @@ public class IDCardGenerator implements GenericGenerator {
     }
 
     public static void main(String[] args) throws ParseException {
-        GenericGenerator genericGenerator = new IDCardGenerator();
+        IDCardGenerator genericGenerator = new IDCardGenerator();
         System.out.println(genericGenerator.generate());
        System.out.println(genericGenerator.generate(new Date()));
        System.out.println(genericGenerator.generate("612732"));

@@ -1,8 +1,12 @@
 package com.coffee.generator;
+import com.coffee.generator.base.GenericGenerator;
+
 import java.io.UnsupportedEncodingException;
 import java.util.Random;
 
-public class ChineseNameGenerator {
+public class ChineseNameGenerator  implements GenericGenerator {
+
+    @Override
     public String generate() {
         return getChineseFamilyName()+getChineseGivenName();
     }
