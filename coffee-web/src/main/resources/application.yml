@@ -36,6 +36,7 @@ spring:
       commons-log.connection-logger-name: stat,wall,log4j
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
     useGlobalDataSourceStat: true
+
   jpa:
     properties:
       hibernate:
@@ -44,6 +45,9 @@ spring:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
         format_sql: true
       show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
   mail:
     host: smtp.163.com #SMTP服务器地址
     username:  socks #登陆账号

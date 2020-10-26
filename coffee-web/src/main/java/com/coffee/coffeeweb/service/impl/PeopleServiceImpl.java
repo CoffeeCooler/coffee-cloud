@@ -9,11 +9,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class PeopleServiceImpl implements PeopleService {
 
-    @Autowired
-    private PeopleDao peopleDao;
 
     @Override
     public PeopleBean list(PeopleBean peopleBean) {
-        return peopleDao.list(peopleBean);
+        return peopleBean;
     }
 }
